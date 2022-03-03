@@ -1409,6 +1409,10 @@ void debug_gdbstub::handle_character(char ch)
 			}
 			break;
 		case PACKET_CHECKSUM1:
+			if ( ch == '#' )
+			{
+				goto checksum_ok;
+			}
 			if ( sscanf(&ch, "%01hhx", &nibble) != 1 )
 			{
 				osd_printf_info("gdbstub: invalid checksum!\n");
@@ -1434,6 +1438,7 @@ void debug_gdbstub::handle_character(char ch)
 				m_readbuf_state = PACKET_START;
 				break;
 			}
+		checksum_ok:
 			m_packet_buf[m_packet_len] = '\0';
 			send_ack();
 			handle_packet();
