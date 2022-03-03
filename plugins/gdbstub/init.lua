@@ -20,6 +20,17 @@ local regmaps = {
 		regsize = 4,
 		addrsize = 4,
 		pcreg = "EIP"
+	},
+	i8080 = {
+		togdb = {
+			PC = 0, SP = 1, AF = 2, BC = 3, DE = 4, HL = 5
+		},
+		fromgdb = {
+			"PC", "SP", "AF", "BC", "DE", "HL"
+		},
+		regsize = 2,
+		addrsize = 2,
+		pcreg = "PC"
 	}
 }
 regmaps.i486 = regmaps.i386
